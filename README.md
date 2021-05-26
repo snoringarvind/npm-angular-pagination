@@ -56,7 +56,7 @@ npm i @snoringarvind/pagination
      ></div>
      ```
 
-1. #### Adding buttons to navigate forward and backward
+1. #### Adding buttons to navigate forward and backward.
 
    - #### component.html
      ```html
@@ -73,13 +73,13 @@ npm i @snoringarvind/pagination
      </div>
      ```
 
-1. #### Adding clickable page number buttons/
+1. #### Adding clickable page number buttons.
 
    - #### component.html
 
-     Five clickable buttons are displayed with the curren page button in the middle.
-     The variables _currentPage_ and _btnNosArr_ we get from the call-back, which we will cover later.
+     Five clickable buttons are displayed with the current page button in the middle.
      With [ngClass] we highlight the current page number.
+     The variables _currentPage_ and _btnNosArr_ we get from the call-back, which we will cover later.
 
      ```html
      <div
@@ -263,7 +263,7 @@ npm i @snoringarvind/pagination
          [valuesArr]="data"
          [searchTerms]="searchTerms"
          [searchObservable]="searchObservable"
-         [pageRangeArr]="[10, 40, 30, 15, 17, 1000]"
+         [pageRangeArr]="[5, 20, 30, 40, 50]"
        >
          <button (click)="pagination.first()" class="page-first-btn"><<</button>
          <button (click)="pagination.prev()" class="page-prev-btn"><</button>
@@ -308,7 +308,7 @@ npm i @snoringarvind/pagination
    </div>
    ```
 
-1. #### The entire component.ts file code is here
+1. #### The entire component.ts file code is here.
 
    In your component.ts file implement a callback function to receive the new sliced values and other details.
 
@@ -383,3 +383,7 @@ npm i @snoringarvind/pagination
      }
    }
    ```
+
+### Live demo
+
+- ![Click to see the live demo.](https://stackblitz.com/edit/angular-npm-pagination?file=src/app/app.component.ts)
