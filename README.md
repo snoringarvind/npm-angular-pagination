@@ -25,7 +25,7 @@ npm i @snoringarvind/pagination
 
   @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, FormsModule, AppRoutingModule, PaginationModule],
+    imports: [BrowserModule, FormsModule, PaginationModule],
     providers: [],
     bootstrap: [AppComponent],
   })
