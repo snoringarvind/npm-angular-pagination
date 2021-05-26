@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "pagination": {
+      "projectType": "library",
+      "root": "projects/pagination",
+      "sourceRoot": "projects/pagination/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/pagination/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/pagination/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/pagination/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/pagination/src/test.ts",
+            "tsConfig": "projects/pagination/tsconfig.spec.json",
+            "karmaConfig": "projects/pagination/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "pagination"
 }
