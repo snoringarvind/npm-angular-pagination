@@ -16,16 +16,16 @@ npm i @snoringarvind/pagination
 
 ### Set up
 
-- #### component.ts
+- #### module.ts
 
   Import pagination in your module.ts file and add it to the imports[ ].
 
   ```javascript
-  import { PaginationDirective } from "@snoringarvind/pagination";
+  import { PaginationModule } from "@snoringarvind/pagination";
 
   @NgModule({
-    declarations: [AppComponent, PaginationDirective],
-    imports: [BrowserModule, FormsModule, AppRoutingModule],
+    declarations: [AppComponent],
+    imports: [BrowserModule, FormsModule, AppRoutingModule, PaginationModule],
     providers: [],
     bootstrap: [AppComponent],
   })
