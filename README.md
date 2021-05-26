@@ -21,10 +21,10 @@ npm i @snoringarvind/pagination
   Import pagination in your module.ts file and add it to the imports[ ].
 
   ```javascript
-  import { SnoringPaginationDirective } from "./snoring-pagination.directive";
+  import { PaginationDirective } from "@snoringarvind/pagination";
 
   @NgModule({
-    declarations: [AppComponent, SnoringPaginationDirective],
+    declarations: [AppComponent, PaginationDirective],
     imports: [BrowserModule, FormsModule, AppRoutingModule],
     providers: [],
     bootstrap: [AppComponent],
@@ -34,29 +34,25 @@ npm i @snoringarvind/pagination
 
 ### How to use
 
-1. #### Add pagination directive to your div element
+1. #### Add pagination directive to your container div element
 
    - #### component.html
      ```html
-     <div
-       class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-     ></div>
+     <div class="pagination" pagination #pagination="pagination"></div>
      ```
 
 1. #### Pass your [data] on which you want to implement your pagination. The data should be in the form of an array.
 
    - #### component.html
 
-     The _values_ is your data variable.
+     The _data_ is your data variable.
 
      ```html
      <div
        class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-       [valuesArr]="values"
+       pagination
+       #pagination="pagination"
+       [valuesArr]="data"
      ></div>
      ```
 
@@ -66,9 +62,9 @@ npm i @snoringarvind/pagination
      ```html
      <div
        class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-       [valuesArr]="values"
+       pagination
+       #pagination="pagination"
+       [valuesArr]="data"
      >
        <button class="page-first-btn" (click)="pagination.first()"><<</button>
        <button class="page-prev-btn" (click)="pagination.prev()"><</button>
@@ -77,19 +73,20 @@ npm i @snoringarvind/pagination
      </div>
      ```
 
-1. #### Adding clickable page number buttons and also highlighting the current page number.
+1. #### Adding clickable page number buttons/
 
    - #### component.html
 
      Five clickable buttons are displayed with the curren page button in the middle.
      The variables _currentPage_ and _btnNosArr_ we get from the call-back, which we will cover later.
+     With [ngClass] we highlight the current page number.
 
      ```html
      <div
        class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-       [valuesArr]="values"
+       pagination
+       #pagination="pagination"
+       [valuesArr]="data"
      >
        <div *ngFor="let number of btnNosArr">
          <button
@@ -111,11 +108,11 @@ npm i @snoringarvind/pagination
      ```html
      <div
        class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-       [valuesArr]="values"
+       pagination
+       #pagination="pagination"
+       [valuesArr]="data"
      >
-       <div>
+       <div class="pageno-input">
          <input
            name="input"
            [ngModel]="currentPage"
@@ -125,18 +122,19 @@ npm i @snoringarvind/pagination
      </div>
      ```
 
-1. #### Adding a dropdown to select the number of data-values on each page. The default selection is [5, 10, 25, 50 ,100, 250, 500] but you can also pass your own selection range.
+1. #### Adding a dropdown to select the number of data-values on each page.
 
    - #### component.html
 
+     The default selection is [5, 10, 25, 50 ,100, 250, 500] but you can also pass your own selection range.
      The variable _selectArr_ we get from the call-back, which we will cover later.
 
      ```html
      <div
        class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-       [valuesArr]="values"
+       pagination
+       #pagination="pagination"
+       [valuesArr]="data"
        [pageRangeArr]="[5, 20, 30, 40, 50]"
      >
        <select (click)="pagination.onRulePerPageChange($event)">
@@ -154,9 +152,11 @@ npm i @snoringarvind/pagination
      </div>
      ```
 
-1. #### Adding a call-back function for new sliced values inside our respective component.ts file.
+1. #### Adding a call-back function.
 
    - #### component.ts
+
+     The callback function return the new sliced data and other values.
 
      ```javascript
          newRulesCB(val: any) {
@@ -175,9 +175,9 @@ npm i @snoringarvind/pagination
      ```html
      <div
        class="pagination"
-       snoringPagination
-       #pagination="snoringPagination"
-       [valuesArr]="values"
+       pagination
+       #pagination="pagination"
+       [valuesArr]="data"
        [pageRangeArr]="[5, 20, 30, 40, 50]"
        (newRules)="newRulesCB($event)"
      ></div>
@@ -257,8 +257,8 @@ npm i @snoringarvind/pagination
 
        <div
          class="pagination"
-         snoringPagination
-         #pagination="snoringPagination"
+         pagination
+         #pagination="pagination"
          (newRules)="newRulesCB($event)"
          [valuesArr]="data"
          [searchTerms]="searchTerms"
@@ -336,8 +336,13 @@ npm i @snoringarvind/pagination
      currentPage: number = 1;
 
      searchObservable!: Observable<any>;
+     searchTerms = new Subject<string>();
 
      constructor(private cdRef: ChangeDetectorRef) {}
+
+     search(term: string) {
+       this.searchTerms.next(term);
+     }
 
      ngOnInit() {
        let x: any = DATA.split('\n');
@@ -369,16 +374,9 @@ npm i @snoringarvind/pagination
        this.cdRef.detectChanges();
      }
 
-     searchTerms = new Subject<string>();
-
-     search(term: string) {
-       this.searchTerms.next(term);
-     }
-
      newRulesCB(val: any) {
        this.currentPage = val.currentPage;
        this.btnNosArr = val.btnNosArr;
-
        this.rulesPerPage = val.rulesPerPage;
        this.selectArr = val.newPageRangeArr;
        this.slicedNames = val.valuesArr;
