@@ -11,7 +11,7 @@
 ### How to install
 
 ```
-npm i snoring-pagination
+npm i @snoringarvind/pagination
 ```
 
 ### Set up
