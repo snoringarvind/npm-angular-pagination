@@ -386,4 +386,4 @@ npm i @snoringarvind/pagination
 
 ### Live demo
 
-- ![Click to see the live demo.](https://stackblitz.com/edit/angular-npm-pagination?file=src/app/app.component.ts)
+- [Click to see the live demo.](https://stackblitz.com/edit/angular-npm-pagination?file=src/app/app.module.ts)
