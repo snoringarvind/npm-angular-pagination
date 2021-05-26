@@ -1,16 +1,9 @@
 import { NgModule } from '@angular/core';
-import { PaginationComponent } from './pagination.component';
-
-
+import { PaginationDirective } from './pagination.directive';
 
 @NgModule({
-  declarations: [
-    PaginationComponent
-  ],
-  imports: [
-  ],
-  exports: [
-    PaginationComponent
-  ]
+  declarations: [PaginationDirective],
+  imports: [],
+  exports: [PaginationDirective],
 })
-export class PaginationModule { }
+export class PaginationModule {}
