@@ -366,10 +366,6 @@ npm i @snoringarvind/pagination
 
      ngOnChanges() {}
 
-     onValuesChange(val: any[]) {
-       this.slicedNames = val;
-     }
-
      ngAfterViewInit() {
        this.cdRef.detectChanges();
      }
